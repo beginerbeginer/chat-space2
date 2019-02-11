@@ -1,0 +1,44 @@
+.notification
+  %div.notice チャットグループが作成されました
+
+.side-bar
+  .header
+    %h3.user_name kumasaki
+    %ul.header_lists
+      %li.edit_user_groups
+        %i.fa.fa-pencil-square-o.icon
+
+      %li.sign_in
+        %i.fa.fa-cog.icon
+  .groups
+    %div.group_1 aaaaaaaaa
+    .p まだメッセージはありません。
+    %div.group_2 sampleグループ
+    .p まだメッセージはありません。
+.chat
+  .header
+    %div.p sampleグループ
+    %div.member__name Member: kumasaki
+    %input.edit__submit{"data-disable-with" => "Edit", :name => "commit", :type => "submit", :value => "Edit"}/
+  .border
+  .message
+    %div.p kumasaki
+    %timestamp 2018/09/18 06:27:08
+    %div.comment なるほど
+  .message
+    %div.p kumasaki
+    %timestamp 2018/09/18 06:34:44
+    %div.comment 水色きれい
+  .message
+    %div.p kumasaki
+    %timestamp 2018/09/18 06:55:38
+    %div.comment command Enterで送信したい感ある
+  .message
+    %div.p kumasaki
+    %timestamp 2018/09/18 07:27:12
+    %div.comment お腹すいた
+
+.form
+  %textbox type a message
+  %i.fa.fa-picture-o.icon
+  %input.form__submit{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/ 
