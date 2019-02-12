@@ -13,7 +13,6 @@ body {
 }
 
 
-// お知らせバー
 .notification {
   background: #38AEF0;
   width:100%;
@@ -23,7 +22,6 @@ body {
   text-align: center;
 }
 
-// 左側メニューバー
 .side-bar {
   box-sizing: border-box;
   width: 300px;
@@ -75,7 +73,6 @@ ul.header__lists {
   }
 }
 
-// 右側表示欄
 .chat{
   width: calc(100vw - 300px);
 
@@ -121,11 +118,9 @@ ul.header__lists {
     }
   }
 }
-// chat欄ボーダー
 .border {
   border: 1px solid #eeeeee;
 }
-// chat欄各メッセージ間隔
 .messages{
   box-sizing: border-box;
   height: calc(100vh - 100px - 90px);
