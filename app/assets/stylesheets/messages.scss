@@ -3,7 +3,6 @@ body{
   height:100%;
   display: block;
 }
-// お知らせバー
 .notification {
   background: #38AEF0;
   width:100%;
@@ -17,7 +16,6 @@ body{
   }
 }
 
-// 左側メニューバー
 .side-bar {
   color:#FFFFFF;
   width:300px;
@@ -43,12 +41,7 @@ body{
   li {
     text-align: -webkit-match-parent;
   }
-  // .header_icons {
-  //  display: inline-block;
-  //  float:right;
-  //  cursor: pointer;
-  //  display: flex;
-  // }
+
 
   .groups {
     background: #2f3e51;
@@ -62,7 +55,6 @@ body{
     }
   }
 
-// 右側表示欄
 .chat {
   width: calc( 100vw - 300px);
   float:right;
@@ -72,35 +64,32 @@ body{
     box-sizing: border-box;
       height: 100px;
     p {
-      // font-weight: 35px;
       font-size: 20px;
       color:#333333;
     }
   }
 }
-// chat欄ボーダー
 .border {
   color: #eeeeee;
 }
-// chat欄各メッセージ間隔
 .chat.messages {
   box-sizing: border-box;
     height: 100px;
     padding: 0 40px;
 }
-// chat欄ユーザー表示
+
 .user__name {
   font-size:16px;
   font-weight: bold;
   color:#434A54;
 }
 
-// chat欄コメント表示
+
 .user__comment {
   font-size: 14px;
 }
 
-// chat欄タイムスタンプ
+
 .timestmp{
   font-size: 12px;
   color:#999999;
@@ -112,7 +101,7 @@ body{
       height:40px;
     }
 
-// 入力欄
+
   .message {
   background: #AAAAAA;
 }
