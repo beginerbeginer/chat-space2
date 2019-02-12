@@ -1,45 +1,49 @@
-.notification
-  %div.notice チャットグループが作成されました
-
-.side-bar
-  .header
-    %h3.user_name kumasaki
-    %ul.header_lists
-      %li.edit_user_groups
-        %i.fa.fa-pencil-square-o.icon
-
-      %li.sign_in
-        %i.fa.fa-cog.icon
-  .groups
-    %div.group_1 aaaaaaaaa
-    .p まだメッセージはありません。
-    %div.group_2 sampleグループ
-    .p まだメッセージはありません。
-
-.chat
-  .header
-    %div.p sampleグループ
-    %div.member__name Member: kumasaki
-    %input.edit__submit{"data-disable-with" => "Edit", :name => "commit", :type => "submit", :value => "Edit"}/
-  .border
-  .message
-    %div.p kumasaki
-    %timestamp 2018/09/18 06:27:08
-    %div.comment なるほど
-  .message
-    %div.p kumasaki
-    %timestamp 2018/09/18 06:34:44
-    %div.comment 水色きれい
-  .message
-    %div.p kumasaki
-    %timestamp 2018/09/18 06:55:38
-    %div.comment command Enterで送信したい感ある
-  .message
-    %div.p kumasaki
-    %timestamp 2018/09/18 07:27:12
-    %div.comment お腹すいた
-
-.form
-  %textbox type a message
-  %i.fa.fa-picture-o.icon
-  %input.form__submit{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ChatSpaceSample
+    %meta{:content => "authenticity_token", :name => "csrf-param"}/
+    %meta{:content => "1Mu/nQxEbRFzgVvIs/tRxed/dSy3p1vqOluGTBgseapH7cVppn0sYhASp2jCPUz6S0393OYA5AK4eXjhpwBnFg==", :name => "csrf-token"}/
+    %link{"data-turbolinks-track" => "reload", :href => "/assets/application-20597f7122b97f433c4487edf7d6a0cfc9e951e2a661b8b0c7320b95bbd38ccd.css", :media => "all", :rel => "stylesheet"}/
+    %script{"data-turbolinks-track" => "reload", :src => "/assets/application-6b92f7bcf94deede5afc9ab209237e3423679aa989ffa2c7a102c62118315e23.js"}
+  %body
+    .flash-box
+    .wrapper
+      .chat-side
+        .side-header
+          .side-header__box
+            %p.side-header__box__user-name MMMM
+            %ul.side-header__box__menu
+              %li.side-header__box__menu__edit-user
+                %a{:href => "/groups/new"}
+                  %i.fa.fa-edit
+              %li.side-header__box__menu__new-group
+                %a{:href => "/users/41/edit"}
+                  %i.fa.fa-cog
+        .groups
+          %a{:href => "/groups/149/messages"}
+            .group
+              %p.group__group-name ascascasc
+              %p.group__latest-message まだメッセージがありません
+      .chat-main
+        .main-header
+          .main-header__left-box
+            %h2.main-header__left-box__current-group{"data-group_id" => "149"}
+              ascascasc
+            %ul.main-header__left-box__member-list
+              Member：
+              %li.main-header__left-box__member-list__member MMMM
+          %a{:href => "/groups/149/edit"}
+            .main-header__edit-btn Edit
+        .messages
+        .form
+          %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/groups/149/messages", :enctype => "multipart/form-data", :method => "post"}
+            %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+            %input{:name => "authenticity_token", :type => "hidden", :value => "XFrntlz1/CSTSjY88O3jk3+7ALV3YLqMkRECcZXF1MwjBO1zl5UwDZghN7nAu+wmOGcro65UFeDRcD8lH8UgWQ=="}/
+            .input-box
+              %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
+              %label.input-box__image{:for => "message_image"}
+                %i.fa.fa-image
+                %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
+            %input.submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
