@@ -94,7 +94,7 @@
   }
 
   .field-label {
-    .field_with_errors {
+    &__with_errors {
       display: inline-block;
       color: #d65f4c;
       font-weight: 400;
@@ -102,7 +102,7 @@
   }
 
   .field-input {
-    .field_with_errors {
+    &__with_errors {
       position: relative;
 
       &:after {
