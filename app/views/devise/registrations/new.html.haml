@@ -9,25 +9,25 @@
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
         .field
-          .field__field-label
+          .field-label
             = f.label :name
-          .field__field-input
+          .field-input
             = f.text_field :name, autofocus: true
         .field
-          .field__field-label
+          .field-label
             = f.label :email
-          .field__field-input
+          .field-input
             = f.email_field :email
         .field
-          .field__field-label
+          .field-label
             = f.label :password
             %i (英数字8文字以上)
-          .field__field-input
+          .field-input
             = f.password_field :password, autocomplete: "off"
         .field
-          .field__field-label
+          .field-label
             = f.label :password_confirmation
-          .field__field-input
+          .field-input
             = f.password_field :password_confirmation, autocomplete: "off"
         .actions
           = f.submit "Create Account", class: 'btn'
