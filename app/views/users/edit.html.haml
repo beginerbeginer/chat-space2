@@ -16,13 +16,18 @@
       /   %input{:name => "authenticity_token", :type => "hidden", :value => "aDQvyNB3PNQ3QpY2VnOnWbAH52faw5LyYFUrwzEo/vHAGGrygqQ3cUav5amJVqyd9szWDk/FhkAna6St0dUnAQ=="}/
         .field
           .field-label
+            = f.label :name
             / %label{:for => "user_name"} Name
           .field-input
+            = f.text_field :name, autofocus: true
             / %input#user_name{:autofocus => "autofocus", :name => "user[name]", :type => "text", :value => "MMMM"}/
         .field
           .field-label
+            = f.label :email
             / %label{:for => "user_email"} Email
           .field-input
+            = f.email_field :email
             / %input#user_email{:name => "user[email]", :type => "email", :value => "miyabi6125@gmail.com"}/
         .actions
+            = f.submit "Update", class: 'btn'
           / %input.btn{"data-disable-with" => "Update", :name => "commit", :type => "submit", :value => "Update"}/
