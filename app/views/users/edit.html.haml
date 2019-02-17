@@ -1,0 +1,47 @@
+/ #account-page.account-page
+/   .account-page__inner.clearfix
+/     .account-page__inner--left.account-page__header
+/       %h2 Edit Account
+/       %h5 アカウントの編集
+/       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'
+/       = link_to "トップページに戻る", :back, class: 'btn'
+/     .account-page__inner--right.user-form
+/       = form_for(current_user) do |f|
+/         .field
+/           .field-label
+/             = f.label :name
+/           .field-input
+/             = f.text_field :name, autofocus: true
+/         .field
+/           .field-label
+/             = f.label :email
+/           .field-input
+/             = f.email_field :email
+/         .actions
+/           = f.submit "Update", class: 'btn'
+
+
+#account-page.account-page
+  .account-page__inner.clearfix
+    .account-page__inner--left.account-page__header
+      %h2 Edit Account
+      %h5 アカウントの編集
+      %a.btn{"data-method" => "delete", :href => "/users/sign_out", :rel => "nofollow"} ログアウト
+      %a.btn{:href => "https://chat-space-sample.herokuapp.com/"} トップページに戻る
+    .account-page__inner--right.user-form
+      %form#edit_user_41.edit_user{"accept-charset" => "UTF-8", :action => "/users/41", :method => "post"}
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+        %input{:name => "_method", :type => "hidden", :value => "patch"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => "aDQvyNB3PNQ3QpY2VnOnWbAH52faw5LyYFUrwzEo/vHAGGrygqQ3cUav5amJVqyd9szWDk/FhkAna6St0dUnAQ=="}/
+        .field
+          .field-label
+            %label{:for => "user_name"} Name
+          .field-input
+            %input#user_name{:autofocus => "autofocus", :name => "user[name]", :type => "text", :value => "MMMM"}/
+        .field
+          .field-label
+            %label{:for => "user_email"} Email
+          .field-input
+            %input#user_email{:name => "user[email]", :type => "email", :value => "miyabi6125@gmail.com"}/
+        .actions
+          %input.btn{"data-disable-with" => "Update", :name => "commit", :type => "submit", :value => "Update"}/
