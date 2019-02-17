@@ -55,7 +55,7 @@
     }
   }
 
-  .field {
+  &__field {
     margin-bottom: 10px;
 
     .field-label {
@@ -96,16 +96,16 @@
     background-color: #38aef0;
   }
 
-  &__field-label {
-    &--field_with_errors {
+  .field-label {
+    .field_with_errors {
       display: inline-block;
       color: #d65f4c;
       font-weight: 400;
     }
   }
 
-  &__field-input {
-    &--field_with_errors {
+  .field-input {
+    field_with_errors {
       position: relative;
 
       &:after {
