@@ -21,10 +21,6 @@
       content: "";
       display: block;
     }
-
-
-
-
   }
 
   &__header {
@@ -57,32 +53,28 @@
       font-size: 14px;
     }
 
+  .field {
+    margin-bottom: 10px;
 
-    &__inner {
+    .field-label {
+      padding: 10px 0;
+      letter-spacing: 1px;
+      font-size: 14px;
+      font-weight: 200;
 
-      &__field {
-        margin-bottom: 10px;
-
-        .field-label {
-          padding: 10px 0;
-          letter-spacing: 1px;
-          font-size: 14px;
-          font-weight: 200;
-
-          i {
-            font-size: 11px;
-          }
-        }
-
-        .field-input {
-          input {
-            width: 100%;
-            padding: 10px;
-            letter-spacing: 1px;
-          }
-        }
+      i {
+        font-size: 11px;
       }
     }
+
+    .field-input {
+      input {
+        width: 100%;
+        padding: 10px;
+        letter-spacing: 1px;
+      }
+    }
+  }
 
   .btn {
     display: inline-block;
