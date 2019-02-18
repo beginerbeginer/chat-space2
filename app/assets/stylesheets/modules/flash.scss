@@ -1,16 +1,3 @@
-// .notification .notice {
-//   background-color: #blue;
-//   color: #white;
-//   text-align: center;
-// }
-// .notification .alert {
-//   background-color: #orange;
-//   color: #white;
-//   text-align: center;
-// }
-// css→scssに変換
-// 色の指定→colors.scss
-
 .notification {
   .notice {
     background-color: $light_blue;
