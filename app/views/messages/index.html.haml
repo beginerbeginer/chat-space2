@@ -5,47 +5,24 @@
   .chat
     .header
       .left-header
-        .left-header__title
-          グループ名
+        %div.left-header__title
+          = @group.name
         %ul.left-header__members
-          Member：
-          %li.member
-            メンバー名
-          %li.member
-            メンバー名
-          %li.member
-            メンバー名
+          = "Member : "
+          %li.left-header__member
+          - @group.users.each do |user|
+            = user.name
+
+
       .right-header
-        .right-header__button
-          Edit
+        %a.right-header__button
+        = link_to "Edit", "edit"
+
+        / = link_to 'Edit', edit_group_path(params[:group_id]), class: 'right-header__button'
+
     .messages
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2017/04/04
-        .lower-meesage
-          .lower-message__content
-            メッセージ
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2017/04/04
-        .lower-meesage
-          .lower-message__content
-            メッセージ
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2017/04/04
-        .lower-meesage
-          .lower-message__content
-            メッセージ
+      = render partial: 'message', collection: @messages
+
     .form
       %form
         %input.form__message
