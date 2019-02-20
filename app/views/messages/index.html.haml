@@ -5,16 +5,13 @@
   .chat
     .header
       .left-header
-        .left-header__title
-          グループ名
+        %div.left-header__title
+          = @group.name
         %ul.left-header__members
-          Member：
-          %li.member
-            メンバー名a
-          %li.member
-            メンバー名b
-          %li.member
-            メンバー名c
+          = "Member : "
+          %li.left-header__member
+          - @group.users.each do |user|
+            = user.name
 
 
       .right-header
