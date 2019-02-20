@@ -13,12 +13,9 @@
           - @group.users.each do |user|
             = user.name
 
-
       .right-header
         %a.right-header__button
         = link_to "Edit", "edit"
-
-        / = link_to 'Edit', edit_group_path(params[:group_id]), class: 'right-header__button'
 
     .messages
       = render partial: 'message', collection: @messages
