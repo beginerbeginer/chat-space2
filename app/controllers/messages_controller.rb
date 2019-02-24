@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-       @message = Message.create(message_params)
+    @message = @group.messages.create(message_params)
     respond_to do |format|
       format.html { redirect_to action: :index }
       format.json
@@ -24,3 +24,5 @@ class MessagesController < ApplicationController
     @group = Group.find(params[:group_id])
   end
 end
+
+
