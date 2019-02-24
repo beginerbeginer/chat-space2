@@ -1,4 +1,5 @@
- function buildHTML(message){
+$(function(){
+  function buildHTML(message){
     var image = (message.image.url) ? `<img src = ${message.image.url}>` : "";
     var html = `<strong>
                   <div class = "message" data-message-id="${message.id}">
@@ -22,6 +23,7 @@
                 </strong>`
   return html;
   }
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
