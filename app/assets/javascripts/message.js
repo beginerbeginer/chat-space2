@@ -22,27 +22,6 @@ $(function(){
   return html;
   }
 
-  function autoupdate() {
-    if (document.location.href.match("/messages")) {
-      $.ajax({
-        url: window.location.href,
-        type: 'GET',
-        dataType: 'json'
-      }).done(function (data) {
-        for (var i = $('.message').length; i < data.messages.length; i++) {
-          html = buildHTML(data.messages[i]);
-          $('.messages').append(html);
-          if (i = data.messages.length) {
-            scroll();
-          };
-        };
-      }).fail(function () {
-        alert('error');
-      });
-    }
-  }
-
-
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
