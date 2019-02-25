@@ -22,6 +22,27 @@ $(function(){
   return html;
   }
 
+  function autoupdate() {
+    if (document.location.href.match("/messages")) {
+      $.ajax({
+        url: window.location.href,
+        type: 'GET',
+        dataType: 'json'
+      }).done(function (data) {
+        for (var i = $('.message').length; i < data.messages.length; i++) {
+          html = buildHTML(data.messages[i]);
+          $('.messages').append(html);
+          if (i = data.messages.length) {
+            scroll();
+          };
+        };
+      }).fail(function () {
+        alert('error');
+      });
+    }
+  }
+
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -45,25 +66,11 @@ $(function(){
       alert('error');
     })
   });
-  var auto_reload = setInterval( function() {
-    var url = $(location).attr('pathname');
-    var messageId = $('.message').last().data('message-id');
-    $.ajax({
-      url: url,
-      type: 'GET',
-      data: { id: messageId},
-      dataType: 'json'
-    })
-    .done(function(messages) {
-      messages.forEach(function(message) {
-        var html = buildSendMessageHTML(message);
-        $('.messages').append(html);
-        $('.chat-main__body').animate({ scrollTop: $(".messages")[0].scrollHeight }, 'fast');
-      });
-    })
-    .fail(function(){
-      alert('error');
-    });
-  }, 5000 );
-});
 
+
+  if (document.location.href.match("/messages")) {
+    setInterval(autoupdate, 5000);
+  };
+
+
+});
