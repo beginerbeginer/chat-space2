@@ -1,28 +1,27 @@
 $(function(){
-  function buildHTML(message){
-    var image = (message.image.url) ? `<img src = ${message.image.url}>` : "";
+  function buildSendMessageHTML(message){
+    var image = (message.image.url) ? `<img src = ${message.image.url} class: "lower-message__image">` : "";
     var html = `<strong>
                   <div class = "message" data-message-id="${message.id}">
                     <div class = "upper-message">
                       <div class = "upper-message__user-name">
-                        ${message.name}
+                        ${message.user_name}
                       </div>
                       <div class="upper-message__date">
                         ${message.date}
                       </div>
                     </div>
-                    <div class = "lower-meesage">
-                      <div class = "content">
+                    <div class="lower-message">
+                      <p class="lower-message__content">
                         ${message.content}
-                      </div>
-                      <div class = "image">
-                        ${image}
-                      </div>
+                      </p>
+                      ${image}
                     </div>
                   </div>
                 </strong>`
   return html;
   }
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -36,14 +35,14 @@ $(function(){
       contentType: false
     })
     .done(function(message){
-      var html = buildHTML(message);
+      var html = buildSendMessageHTML(message);
       $('.messages').append(html);
-      $('.chat-main__body').animate({ scrollTop: $(".messages")[0].scrollHeight });
-      $('.footer__messagebox').reset('');
+      $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight });
+      $('#new_message')[0].reset();
+      $('input').prop('disabled', false);
     })
     .fail(function(){
       alert('error');
     })
-    return false
   })
 })
