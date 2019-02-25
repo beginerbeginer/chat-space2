@@ -59,7 +59,6 @@ $(function(){
         var html = buildSendMessageHTML(message);
         $('.messages').append(html);
         $('.chat-main__body').animate({ scrollTop: $(".messages")[0].scrollHeight }, 'fast');
-        // $('#new_message')[0].reset();
       });
     })
     .fail(function(){
