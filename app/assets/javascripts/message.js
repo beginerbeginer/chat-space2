@@ -37,12 +37,35 @@ $(function(){
     .done(function(message){
       var html = buildSendMessageHTML(message);
       $('.messages').append(html);
-      $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight });
+      $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight },'fast');
       $('#new_message')[0].reset();
       $('input').prop('disabled', false);
     })
     .fail(function(){
       alert('error');
     })
-  })
-})
+  });
+  var auto_reload = setInterval( function() {
+    var url = $(location).attr('pathname');
+    var messageId = $('.message').last().data('message-id');
+    console.log(messageId)
+    $.ajax({
+      url: url,
+      type: 'GET',
+      data: { id: messageId},
+      dataType: 'json'
+    })
+    .done(function(messages) {
+      messages.forEach(function(message) {
+      var html = buildHTML(message);
+      $('.messages').append(html);
+      $('.chat-main__body').animate({ scrollTop: $(".messages")[0].scrollHeight }, 'fast');
+      $('#new_message')[0].reset();
+      });
+    })
+    .fail(function(){
+      alert('error');
+    });
+  }, 5000 );
+});
+
