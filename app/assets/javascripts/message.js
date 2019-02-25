@@ -48,7 +48,6 @@ $(function(){
   var auto_reload = setInterval( function() {
     var url = $(location).attr('pathname');
     var messageId = $('.message').last().data('message-id');
-    console.log(messageId)
     $.ajax({
       url: url,
       type: 'GET',
