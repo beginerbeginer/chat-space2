@@ -45,11 +45,21 @@ $(function(){
       alert('error');
     })
   });
-
-
-  if (document.location.href.match("/messages")) {
-    setInterval(autoupdate, 5000);
-  };
-
-
+  var auto_reload = setInterval( function() {
+    var url = $(location).attr('pathname');
+    var messageId = $('.message').last().data('message-id');
+    console.log(messageId)
+    $.ajax({
+      url: url,
+      type: 'GET',
+      data: { id: messageId},
+      dataType: 'json'
+    })
+    .done(function(messages) {
+        var html = buildSendMessageHTML(message);
+        $('.messages').append(html);
+        $('.chat-main__body').animate({ scrollTop: $(".messages")[0].scrollHeight }, 'fast');
+        $('#new_message').val();
+    });
+  }, 5000 );
 });
