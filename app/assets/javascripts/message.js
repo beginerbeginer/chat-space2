@@ -1,4 +1,5 @@
-$(function(){
+// $(function(){
+$(document).on('turbolinks:load', function() {
   function buildSendMessageHTML(message){
     var image = (message.image.url) ? `<img src = ${message.image.url} class: "lower-message__image">` : "";
     var html = `<strong>
@@ -46,9 +47,9 @@ $(function(){
     })
   });
   var auto_reload = setInterval( function() {
-    var url = $(location).attr('pathname');
+    var url = location.pathname;
     var messageId = $('.message').last().data('message-id');
-    console.log(messageId)
+    console.log(url)
     $.ajax({
       url: url,
       type: 'GET',
