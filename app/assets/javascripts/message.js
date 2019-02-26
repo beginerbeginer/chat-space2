@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
   function buildSendMessageHTML(message){
     var image = (message.image.url) ? `<img src = ${message.image.url} class: "lower-message__image">` : "";
     var html = `<strong>
@@ -22,10 +22,15 @@ $(function(){
   return html;
   }
 
+  function scroll() {
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight})
+  }
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
+
     $.ajax({
       url: url,
       type: "POST",
@@ -34,15 +39,52 @@ $(function(){
       processData: false,
       contentType: false
     })
-    .done(function(message){
+
+    .done(function(message) {
       var html = buildSendMessageHTML(message);
       $('.messages').append(html);
-      $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight });
+      scroll()
       $('#new_message')[0].reset();
-      $('input').prop('disabled', false);
     })
+
     .fail(function(){
       alert('error');
     })
+
+    .always(function() {
+      $(".form__submit").prop( 'disabled', false )
+    })
   })
-})
+
+  $(function() {
+    var interval = setInterval(update, 5000);
+
+    function update() {
+      if (location.href.match(/\/groups\/\d+\/messages/)) {
+        var lastMessageId = $('.message:last').data('message-id');
+        $.ajax({
+          url: location.href,
+          type: "GET",
+          data: { id: lastMessageId },
+          dataType: 'json'
+        })
+
+        .done(function(data) {
+          var insertHTML = '';
+          data.forEach(function(message){
+            insertHTML += buildSendMessageHTML(message);
+            $('.messages').append(insertHTML);
+            scroll()
+          })
+        })
+
+        .fail(function(data) {
+          alert('自動更新に失敗しました');
+        })
+      }
+      else {
+        clearInterval(interval);
+      }
+    }
+  });
+});
