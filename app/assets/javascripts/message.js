@@ -45,6 +45,7 @@ $(document).on('turbolinks:load', function() {
       $('.messages').append(html);
       $('#new_message')[0].reset();
     })
+
     .fail(function(){
       alert('error');
     })
@@ -53,7 +54,6 @@ $(document).on('turbolinks:load', function() {
       $(".submit").prop( 'disabled', false )
     })
   })
-
 
   $(function() {
     var interval = setInterval(update, 5000)
