@@ -1,4 +1,3 @@
-// $(function(){
 $(document).on('turbolinks:load', function() {
   function buildSendMessageHTML(message){
     var image = (message.image.url) ? `<img src = ${message.image.url} class: "lower-message__image">` : "";
@@ -23,10 +22,15 @@ $(document).on('turbolinks:load', function() {
   return html;
   }
 
+  function scroll() {
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight})
+  }
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
+
     $.ajax({
       url: url,
       type: "POST",
@@ -35,32 +39,51 @@ $(document).on('turbolinks:load', function() {
       processData: false,
       contentType: false
     })
+
     .done(function(message){
       var html = buildSendMessageHTML(message);
       $('.messages').append(html);
-      $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight },'fast');
       $('#new_message')[0].reset();
-      $('input').prop('disabled', false);
     })
     .fail(function(){
       alert('error');
     })
-  });
-  var auto_reload = setInterval( function() {
-    var url = location.pathname;
-    var messageId = $('.message').last().data('message-id');
-    console.log(url)
-    $.ajax({
-      url: url,
-      type: 'GET',
-      data: { id: messageId},
-      dataType: 'json'
+
+    .always(function() {
+      $(".submit").prop( 'disabled', false )
     })
-    .done(function(messages) {
-        var html = buildSendMessageHTML(message);
-        $('.messages').append(html);
-        $('.chat-main__body').animate({ scrollTop: $(".messages")[0].scrollHeight }, 'fast');
-        $('#new_message').val();
-    });
-  }, 5000 );
+  })
+
+
+  $(function() {
+    var interval = setInterval(update, 5000)
+
+    function update() {
+      if (location.href.match(/\/groups\/\d+\/messages/)) {
+        var lastMessageId = $('.messages:last').data('message-id');
+        $.ajax({
+          url: location.href,
+          type: "GET",
+          data: { id: lastMessageId },
+          dataType: 'json'
+        })
+
+        .done(function(data) {
+          var insertHTML = '';
+          data.forEach(function(message){
+            insertHTML += buildSendMessageHTML(message);
+            $('.messages').append(insertHTML);
+            scroll()
+          })
+        })
+
+        .fail(function(data) {
+          alert('自動更新に失敗しました');
+        })
+      }
+      else {
+        clearInterval(interval);
+      }
+    }
+  });
 });
