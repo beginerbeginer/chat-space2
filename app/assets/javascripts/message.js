@@ -40,9 +40,10 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
 
-    .done(function(message){
+    .done(function(message) {
       var html = buildSendMessageHTML(message);
       $('.messages').append(html);
+      scroll()
       $('#new_message')[0].reset();
     })
 
@@ -51,16 +52,16 @@ $(document).on('turbolinks:load', function() {
     })
 
     .always(function() {
-      $(".submit").prop( 'disabled', false )
+      $(".form__submit").prop( 'disabled', false )
     })
   })
 
   $(function() {
-    var interval = setInterval(update, 5000)
+    var interval = setInterval(update, 5000);
 
     function update() {
       if (location.href.match(/\/groups\/\d+\/messages/)) {
-        var lastMessageId = $('.messages:last').data('message-id');
+        var lastMessageId = $('.message:last').data('message-id');
         $.ajax({
           url: location.href,
           type: "GET",
@@ -76,6 +77,7 @@ $(document).on('turbolinks:load', function() {
             scroll()
           })
         })
+
         .fail(function(data) {
           alert('自動更新に失敗しました');
         })
