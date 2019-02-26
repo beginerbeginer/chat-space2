@@ -76,7 +76,6 @@ $(document).on('turbolinks:load', function() {
             scroll()
           })
         })
-
         .fail(function(data) {
           alert('自動更新に失敗しました');
         })
