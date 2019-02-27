@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', function() {
       return html;
   }
 
-  $("#user-search-field").on("keyup", function() {
+  $(document).on("keyup", "#user-search-field", function() {
     var input = $("#user-search-field").val();
 
     $.ajax({
