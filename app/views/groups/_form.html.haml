@@ -26,7 +26,6 @@
       .chat-group-users
         - group.users.each do |user|
           .chat-group-user.clearfix
-          / = f.hidden_field :user_ids, name: 'group[user_ids][]', value: current_user.id,
             = f.hidden_field :user_ids, name: 'group[user_ids][]', value: user.id
             %p.chat-group-user__name
               = user.name
