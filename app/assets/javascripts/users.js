@@ -25,7 +25,6 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(users) {
        var search = "";
-       console.log(search)
        users.forEach(function(user){
          var html = appendUser(user);
          search =  search + html;
