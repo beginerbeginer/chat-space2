@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-
   function appendUser(user) {
      var html = `<div class="chat-group-user clearfix">
                    <p class="chat-group-user__name">${user.name}</p>
@@ -16,9 +15,9 @@ $(document).on('turbolinks:load', function() {
       return html;
   }
 
-  $(document).on("keyup", "#user-search-field", function() {
+  $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
-
+     console.log(input)
     $.ajax({
       type: 'GET',
       url: '/users',
