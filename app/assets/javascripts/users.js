@@ -32,6 +32,7 @@ $(document).on('turbolinks:load', function() {
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
     var preInput = ''
+    console.log(input)
 
     $.ajax({
       type: 'GET',
@@ -50,10 +51,9 @@ $(document).on('turbolinks:load', function() {
         appendNoUser("一致するユーザーはいません");
       }
     })
-
     .fail(function(){
         alert('ユーザー検索に失敗しました');
-    });
+    })
   });
 
   $(document).on('click', ".user-search-add", function() {
