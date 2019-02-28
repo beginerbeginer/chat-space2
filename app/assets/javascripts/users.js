@@ -17,7 +17,6 @@ $(document).on('turbolinks:load', function() {
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
-     console.log(input)
     $.ajax({
       type: 'GET',
       url: '/users',
@@ -26,6 +25,7 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(users) {
        var search = "";
+       console.log(search)
        users.forEach(function(user){
          var html = appendUser(user);
          search =  search + html;
