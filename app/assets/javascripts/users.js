@@ -26,7 +26,7 @@ $(document).on('turbolinks:load', function() {
                    <p class='chat-group-user__name'>${name}</p>
                    <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
                 </div>`
-       user_search_list.append(html);
+       member_list.append(html);
   }
 
   $("#user-search-field").on("keyup", function() {
